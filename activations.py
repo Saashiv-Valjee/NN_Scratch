@@ -15,5 +15,6 @@ def relu(z):
 
 def relu_derivative(z):
     # derivative is 1 if x > 0, which is set to 1 otherwise 0
+    # This is good for efficient gradient descent, which will just stop for non contributing neurons (with a 0 from relu)
     return (z > 0).astype(float)
 
