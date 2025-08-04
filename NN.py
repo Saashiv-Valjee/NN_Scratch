@@ -47,7 +47,7 @@ class NeuralNet:
         # binary cross entropy is used most often 
         
         # we can use the current sample size to scale the loss, otherwise loss would scale up with increasing data size
-        # y will be the matrix of training data, with the columns being the amount of training data samples 
+        # y will be the matrix of training labels, with the columns being the amount of training data samples 
         m = y.shape[1]
 
         # if the network predicts exactly 0 or 1 (self.A2), the below will crash
@@ -56,5 +56,35 @@ class NeuralNet:
 
         # binary cross entropy
         return -np.mean(y * np.log(self.A2 + eps) + (1 - y) * np.log(1 - self.A2 + eps))
+
+
+    def back_prop(self, X, y, learning_rate = 0.01): 
+        # back propogation is essentially just taking the loss function, and continually using the chain rule with partial derivatives of the activation functions and their inputs
+        # until the very beginning weights can be related directly to its loss in the loss space
+
+        # by doing this, we can change the weights and check if they cause the loss function gradient to increase or decrease
+        # a decreasing loss function means we are improving the learning and we should continue changing the weights in the direction we are currently 
+
+        # going forward we have 
+        # W1B1 -> Z1 (dot)
+        # Z1   -> A1 (relu)
+        # A1B2 -> Z2 (dot)
+        # Z2   -> A2 (sig)
+
+        # so we need to go back via 
+        # A2 -> Z2   d(sig):    A2 - y
+        # Z2 -> A1B2 d(weight): 
+
+        # continue on paper, use 
+        # https://medium.com/@waadlingaadil/learn-to-build-a-neural-network-from-scratch-yes-really-cac4ca457efc
+        # for aid
+        # go make ur pasta
+
+        # learning rate corresponds to the amount by which initial weights are altered
+        
+        # X is the training data, of dimensions [features,samples]
+        m = X.shape[1]
+        
+        dZ2 = self.A2 - y
 
 
