@@ -101,6 +101,7 @@ class NeuralNet:
         self.b1 = self.b1 - (learning_rate * dL_db1)
         self.W2 = self.W2 - (learning_rate * dL_dW2)
         self.b2 = self.b2 - (learning_rate * dL_db2)
-
-# predict all elements using an initial set of weights and bias
-# 
+        
+        weights = np.concatenate([self.W1.flatten(), self.W2.flatten()])
+        gradients = np.concatenate([dL_dW1.flatten(), dL_dW2.flatten()])
+        return weights, gradients
