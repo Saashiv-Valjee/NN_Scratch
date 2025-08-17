@@ -8,8 +8,10 @@ class NeuralNet:
         
         # Weights
         # weight matrix connects the layers together and should have dimensions per layer that correspond to: 
-        # - Columns : edges per node = Nodes in following layer 
-        # - Rows    : Nodes per current layer
+        # - Rows    : number of nodes in the next layer
+        # - Columns : number of nodes in the current layer
+        # So that W @ input is valid and returns an output for the next layer
+
         
         # Biases
         # bias matrix is just [nodes per current layer, 1].
